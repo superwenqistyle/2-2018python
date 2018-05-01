@@ -1,12 +1,7 @@
-old_file_name = input("输入要复制的文件名")
-old_file = open(old_file_name,"r")
-position = old_file_name.rfind(".")
-new_file_name = old_file_name[:position]+"备份"+old_file_name[position:]
-new_file = open(new_file_name,"w")
-while True:
-	content = old_file.read(1024)
-	if len(content) == 0:
-		break
-	new_file.write(content)
-old_file.close()
-new_file.close()
+
+f=open("life.text","")
+content=f.read()
+f1=open("life2.text","w")
+content=f1.write(content)
+f.close()
+f1.close()
