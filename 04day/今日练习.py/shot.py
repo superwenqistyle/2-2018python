@@ -34,7 +34,7 @@ class Bullet():
 		self.power=power
 	def kill(self,item):
 		item.hp-=self.power
-		print("%s剩余血量为%d"%(item,item.hp))
+		print("剩余血量为%d"%item.hp)
 specialstroop=Person("特种兵")
 gun=Gun("巴雷特")
 clip=Clip(10)
@@ -42,9 +42,9 @@ clip=Clip(10)
 for temp in range(20):
 	bullet=Bullet(30)
 	specialstroop.loadbullet(clip,bullet)
-specialstroop.loadclip("ak47",clip)
+specialstroop.loadclip(gun,clip)
 laowang=Person("老王")
-specialstroop.usegun(ak47)
+specialstroop.usegun(gun)
 specialstroop.shot(laowang)
 specialstroop.shot(laowang)
 specialstroop.shot(laowang)
