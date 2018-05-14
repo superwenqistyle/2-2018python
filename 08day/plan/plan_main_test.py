@@ -1,6 +1,8 @@
 import pygame
-from PlanSprite import *
+from PlanSpritetest import *
 HERO_FIRE_EVENT = pygame.USEREVENT + 1
+list_bullet=[]
+#resolution=0
 class PlanGame(object):
 	def __init__(self):
 		print("游戏初始化...")
@@ -12,9 +14,11 @@ class PlanGame(object):
 		self.enemy_group = pygame.sprite.Group()
 		#self.enemy_collide_group = pygame.sprite.Group()
 		pygame.time.set_timer(HERO_FIRE_EVENT,500)
+		#resolution=0
 		pass
 	def startGame(self):
 		print("开始游戏")
+		resolution=0
 		while True:
 			self.clock.tick(FRAME_PER_SEC)
 			self.__event_handler()
@@ -59,28 +63,32 @@ class PlanGame(object):
 			self.hero.speed1 = 0
 	def __check_collide(self):
 		# 1. 子弹摧毁敌机
-		i=0
-		k=pygame.sprite.groupcollide(self.hero.bullets,self.enemy_group,True,False)
-
-		#print(k)
-		#if k:
-			#print("开始")
-			#for temp in enemy_group:
-				#i+=1
-				#print("击落敌机数:%d"%i)
-
-				#if k == "{<Bullet sprite(in 0 groups)>: [<Enemy sprite(in 0 groups)>]}":
-			#	image_name1 = pygame.image.load("./images/enemy0_down1.png")
-			#	self.screen.blit(image_name1,temp.size)
-			#	image_name2 = pygame.image.load("./images/enemy0_down2.png")
-			#	self.screen.blit(image_name2,temp.size)
-			#	image_name3 = pygame.image.load("./images/enemy0_down3.png")
-			#	self.screen.blit(image_name3,temp.size)
-			#	image_name4 = pygame.image.load("./images/enemy0_down4.png")
-			#	self.screen.blit(image_name4,temp.size)
-				#temp.kill()
-				#self.enemy_collide_group.add(image_name1,image_name2,image_name3,image_name4)
-				#enemy_collide_group.kill()
+		for i in self.hero.bullets:
+			for j in self.enemy_group:
+				if i.rect in j.rect:
+					 
+		i=1
+		#@Global resolution
+		#resolution=0
+		k=pygame.sprite.groupcollide(self.hero.bullets, self.enemy_group, True, True)
+		if k != "{<Bullet sprite(in 0 groups)>: [<Enemy sprite(in 0 groups)>]}":
+		#if k == None:
+			list_bullet.append(i)
+			print("起作用了..")
+			resolution=0
+			for temp in list_bullet:
+				resolution+=temp
+				print("什么鬼啊...")
+		print("击落敌机数:%d"%resolution)
+		#	image_name1 = EnemyCollide("./images/enemy0_down1.png")
+		#	self.screen.blit(image_name0,image_name1.rect.size)
+		#	image_name2 = EnemyCollide("./images/enemy0_down2.png")
+		#	self.screen.blit(image_name0,image_name2.rect.size)
+		#	image_name3 = EnemyCollide("./images/enemy0_down3.png")
+		#	self.screen.blit(image_name0,image_name3.rect.size)
+		#	image_name4 = EnemyCollide("./images/enemy0_down4.png")
+		#	self.screen.blit(image_name4,image_name4.rect.size)
+		#	self.enemy_collide_group.add(image_name1,image_name2,image_name3,image_name4)
 
 		# 2. 敌机撞毁英雄
 		enemies = pygame.sprite.spritecollide(self.hero, self.enemy_group, True)
@@ -91,6 +99,8 @@ class PlanGame(object):
 			self.hero.kill()
 			# 结束游戏
 			PlaneGame.__game_over()
+#	def __EnmeyCollide(self):
+#		for 
 	def __update_sprites(self):
 		self.back_ground.update()
 		self.back_ground.draw(self.screen)

@@ -86,3 +86,14 @@ class Bullet(GameSprite):
 		if self.rect.bottom < 0:
 			self.kill()
 
+class EnemyCollide():
+	def __init__(self):
+		image_name1 = EnemyCollide("./images/enemy0_down1.png")
+		self.screen.blit(image_name0,image_name1.rect.size)
+		image_name2 = EnemyCollide("./images/enemy0_down2.png")
+		self.screen.blit(image_name0,image_name2.rect.size)
+		image_name3 = EnemyCollide("./images/enemy0_down3.png")
+		self.screen.blit(image_name0,image_name3.rect.size)
+		image_name4 = EnemyCollide("./images/enemy0_down4.png")
+		self.screen.blit(image_name4,image_name4.rect.size)
+		self.enemy_collide_group.add(image_name1,image_name2,image_name3,image_name4)
