@@ -60,28 +60,7 @@ class PlanGame(object):
 	def __check_collide(self):
 		# 1. 子弹摧毁敌机
 		i=0
-		k=pygame.sprite.groupcollide(self.hero.bullets,self.enemy_group,True,False)
-
-		#print(k)
-		#if k:
-			#print("开始")
-			#for temp in enemy_group:
-				#i+=1
-				#print("击落敌机数:%d"%i)
-
-				#if k == "{<Bullet sprite(in 0 groups)>: [<Enemy sprite(in 0 groups)>]}":
-			#	image_name1 = pygame.image.load("./images/enemy0_down1.png")
-			#	self.screen.blit(image_name1,temp.size)
-			#	image_name2 = pygame.image.load("./images/enemy0_down2.png")
-			#	self.screen.blit(image_name2,temp.size)
-			#	image_name3 = pygame.image.load("./images/enemy0_down3.png")
-			#	self.screen.blit(image_name3,temp.size)
-			#	image_name4 = pygame.image.load("./images/enemy0_down4.png")
-			#	self.screen.blit(image_name4,temp.size)
-				#temp.kill()
-				#self.enemy_collide_group.add(image_name1,image_name2,image_name3,image_name4)
-				#enemy_collide_group.kill()
-
+		k=pygame.sprite.groupcollide(self.hero.bullets,self.enemy_group,True,True)
 		# 2. 敌机撞毁英雄
 		enemies = pygame.sprite.spritecollide(self.hero, self.enemy_group, True)
 		print(enemies)
